@@ -13,7 +13,6 @@ Output:
     1. position/index: Position of the given element.
 '''
 
-# Signature of our function
 # Binary Search
 def test_location(cards, element, middle_index):
     if cards[middle_index] == element:
