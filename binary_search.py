@@ -14,6 +14,7 @@ Output:
 '''
 
 # Binary Search
+"""
 def test_location(cards, element, middle_index):
     if cards[middle_index] == element:
         if middle_index-1 >= 0 and cards[middle_index-1] == element:
@@ -40,8 +41,34 @@ def locate_card(cards, element):
             low = middle_index + 1
 
     return -1
+"""
 
+def binary_search(low, high, condition):
+    while low <= high:
+        mid = (low + high) // 2
+        result = condition(mid)
+        if result == "found":
+            return mid
+        elif result == "left":
+            high = mid - 1
+        elif result == "right":
+            low = mid + 1
+    return -1
 
+def locate_card(cards, element):
+    # function closure in python - we can wrtie function inside a function 
+    def condition(mid):
+        if cards[mid] == element:
+            if mid > 0 and cards[mid-1] == element:
+                return "left"
+            else:
+                return "found"
+        elif cards[mid] < element:
+            return "left"
+        else:
+            return "right"
+
+    return binary_search(0, len(cards)-1, condition)
 
 '''
 Test Cases:
